@@ -135,6 +135,20 @@ body {
     margin: 10px 5px;
 }
 
+.table-data .cari .link {
+    width: 100px;
+    height: 30px;
+    border: 1px solid steelblue;
+    background-color: steelblue;
+    color: white;
+    border-radius: 5px;
+    float: right;
+    margin: 10px 5px;
+    line-height: 27px;
+    text-align: center;
+    text-decoration: none;
+}
+
 .table-data .cari .button-search {
     width: 100px;
     height: 30px;
@@ -161,8 +175,9 @@ body {
     color: white;
 }
 
-.table-data .table .tbody {
-    overflow: auto;
+.table-data .table .link {
+    text-decoration: none;
+    color: steelblue;
 }
 
 .table-data .table td {

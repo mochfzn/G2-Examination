@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Text, Div, TableRow, TableData, Button } from '../../component';
+import { NavLink } from 'react-router-dom';
 
 class StockOpname extends Component {
     constructor(props) {
@@ -34,12 +35,12 @@ class StockOpname extends Component {
                     <p>Data Pengguna</p>
                 </Div>
                 <Div class="cari">
-                    <label class="judul">Cari: </label>
+                    <label className="judul">Cari: </label>
                     <Text name="cari" id="cari" class="input" placeholder="Cari..." />
                     <Button value="Cari" class="button-search" />
-                    <Button value="Tambah" class="button" />
+                    <NavLink to="/stock-opname/form" className="link">Tambah</NavLink>
                 </Div>
-                <table class="table">
+                <table className="table">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -53,7 +54,9 @@ class StockOpname extends Component {
                             this.state.barang.map((value, index) => {
                                 return (
                                     <TableRow key={index}>
-                                        <TableData>{value.id}</TableData>
+                                        <TableData>
+                                            <NavLink to={"/stock-opname/form/" + value.id} className="link">{value.id}</NavLink>
+                                        </TableData>
                                         <TableData>{value.nama}</TableData>
                                         <TableData>{value.harga}</TableData>
                                         <TableData>{value.jumlah}</TableData>

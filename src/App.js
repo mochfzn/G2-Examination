@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 import { Login, Body } from './template'
 
@@ -9,7 +10,9 @@ class App extends Component {
   }
   render() { 
     return ( 
-      <Body />
+      <Router>
+        <Body />
+      </Router>
      );
   }
 }

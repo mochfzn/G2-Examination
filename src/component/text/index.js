@@ -8,7 +8,7 @@ class Text extends Component {
 
     render() {
         return(
-            <input type="text" name={this.props.name} className={this.props.class} id={this.props.id} value={this.props.value} placeholder={this.props.placeholder} onChange={this.props.onChange} disabled={this.props.disabled} />
+            <input type="text" name={this.props.name} className={this.props.class} id={this.props.id} value={this.props.value} defaultValue={this.props.defaultValue} placeholder={this.props.placeholder} onChange={this.props.onChange} disabled={this.props.disabled} />
         );
     }
 }
