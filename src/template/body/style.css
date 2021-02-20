@@ -1,0 +1,154 @@
+body {
+    background-color: aliceblue;
+}
+
+.helper {
+    width: 960px;
+    height: 40px;
+    margin: 0 auto;
+    padding: 10px 20px;
+}
+
+.helper .button {
+    width: 110px;
+    height: 40px;
+    color: lightcoral;
+    border: 2px solid lightcoral;
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 20px;
+    float: right;
+}
+
+.form-data {
+    width: 1000px;
+    height: 150px;
+    background-color: white;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.2), 0 0 16px rgba(169, 169, 169, 0.2);
+    border-radius: 20px;
+    margin: 0 auto;
+}
+
+.form-data .judul {
+    width: 880px;
+    height: 55px;
+    margin: 0 auto;
+    text-align: center;
+    line-height: 55px;
+}
+
+.form-data .form {
+    width: 880px;
+    height: 40px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.form-data .form .input {
+    width: 200px;
+    height: 35px;
+    border: 1px solid steelblue;
+    border-radius: 6px;
+    margin-left: 3px;
+    padding-left: 10px;
+}
+
+.form-data .tombol {
+    width: 220px;
+    height: 30px;
+    margin: 10px 0 0 630px;
+    padding: 5px 10px;
+}
+
+.form-data .tombol .button-clear {
+    width: 100px;
+    height: 30px;
+    border: 1px solid steelblue;
+    background-color: white;
+    color: steelblue;
+    border-radius: 5px;
+    float: right;
+    margin: 0 5px;
+}
+
+.form-data .tombol .button-submit {
+    width: 100px;
+    height: 30px;
+    border: 1px solid steelblue;
+    background-color: steelblue;
+    color: white;
+    border-radius: 5px;
+    float: right;
+    margin: 0 5px;
+}
+
+::placeholder {
+    color: steelblue;
+    font-family: sans-serif;
+}
+
+.table-data {
+    width: 960px;
+    height: 500px;
+    background-color: white;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.2), 0 0 16px rgba(169, 169, 169, 0.2);
+    border-radius: 20px;
+    margin: 20px auto;
+    overflow: auto;
+    padding: 20px;
+}
+
+.table-data .cari {
+    width: 900px;
+    height: 50px;
+    line-height: 50px;
+    padding-left: 50px;
+}
+
+.table-data .cari .select {
+    width: 70px;
+    height: 25px;
+    border: 1px solid steelblue;
+    border-radius: 6px;
+    color: steelblue;
+    margin-right: 10px;
+}
+
+.table-data .cari .input {
+    width: 500px;
+    height: 30px;
+    border: 1px solid steelblue;
+    border-radius: 6px;
+}
+
+.table-data .table, .table-data .table th, .table-data .table td {
+    border: 1px solid steelblue;
+}
+
+.table-data .table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-data .table th {
+    padding: 10px;
+    text-align: center;
+    background-color: steelblue;
+    color: white;
+}
+
+.table-data .table .tbody {
+    overflow: auto;
+}
+
+.table-data .table td {
+    padding: 10px;
+    text-align: left;
+}
+
+.table-data .table tbody tr:hover {
+    background-color: #f5f5f5;
+}
+
+.table-data .table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
