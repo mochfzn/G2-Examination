@@ -1,11 +1,12 @@
 import Admin from "./admin";
 import Body from "./body";
-import Kasir from "./kasir";
+import Pegawai from "./pegawai";
 import Login from "./login";
-import MasterBarang from "./master-barang";
-import MasterCustomer from "./master-customer";
-import MasterKasir from "./master-kasir";
+import Barang from "./barang";
+import Customer from "./customer";
+import Kasir from "./kasir";
 import StockOpname from "./stock-opname";
+import StockOpnameForm from "./stock-opname-form";
 import Transaksi from "./transaksi";
 
-export { Admin, Body, Kasir, Login, MasterBarang, MasterCustomer, MasterKasir, StockOpname, Transaksi }
+export { Admin, Body, Pegawai, Login, Barang, Customer, Kasir, StockOpname, StockOpnameForm, Transaksi }

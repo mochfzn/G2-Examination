@@ -2,6 +2,10 @@ body {
     background-color: aliceblue;
 }
 
+.input:disabled {
+    background-color: lightgray;
+}
+
 .helper {
     width: 960px;
     height: 40px;
@@ -118,6 +122,27 @@ body {
     height: 30px;
     border: 1px solid steelblue;
     border-radius: 6px;
+}
+
+.table-data .cari .button {
+    width: 100px;
+    height: 30px;
+    border: 1px solid steelblue;
+    background-color: steelblue;
+    color: white;
+    border-radius: 5px;
+    float: right;
+    margin: 10px 5px;
+}
+
+.table-data .cari .button-search {
+    width: 100px;
+    height: 30px;
+    border: 1px solid steelblue;
+    background-color: white;
+    color: steelblue;
+    border-radius: 5px;
+    margin: 10px 5px;
 }
 
 .table-data .table, .table-data .table th, .table-data .table td {

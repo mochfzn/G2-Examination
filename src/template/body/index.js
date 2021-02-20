@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
 import { Button, Div } from '../../component';
-import { MasterBarang, MasterCustomer, MasterKasir } from '../index'
+import { Login, Barang, Customer, Kasir, StockOpnameForm, StockOpname } from '../index'
 import './style.css';
 
 
@@ -15,9 +16,30 @@ class Body extends Component {
         return ( 
             <React.Fragment>
                 <Div class="helper">
-                    <Button value="Logout" id="logout" name="logout" class="button" onClick={this.props.doLogout} />
+                    <Button value="Logout" id="logout" name="logout" class="button" />
                 </Div>
-                <MasterBarang />
+                <Router>
+                    <Switch>
+                        <Route path="/barang">
+                            <Barang />
+                        </Route>
+                        <Route path="/customer">
+                            <Customer />
+                        </Route>
+                        <Route path="/kasir">
+                            <Kasir />
+                        </Route>
+                        <Route path="/stock-opname">
+                            <StockOpname />
+                        </Route>
+                        <Route path="/stock-opname/form">
+                            <StockOpnameForm />
+                        </Route>
+                        <Route path="/">
+                            <Barang />
+                        </Route>
+                    </Switch>
+                </Router>
             </React.Fragment>
          );
     }

@@ -2,22 +2,22 @@ import React, { Component } from 'react';
 
 import { Text, Div, Paragraph, Table, TableRow, TableData, Button, Select, Option } from '../../component';
 
-class MasterBarang extends Component {
+class Customer extends Component {
     constructor(props) {
         super(props);
         this.state = { 
-            barang: [],
+            customer: [],
             id: "",
             nama: "",
-            harga: "",
-            jumlah: ""
+            alamat: "",
+            telepon: ""
          }
-         this.valueSubmit = "Save";
-         this.valueSelect = "id";
+        this.valueSubmit = "Save";
+        this.valueSelect = "id";
     }
 
     componentDidMount() {
-        fetch('http://localhost:8080/market/barang/', {
+        fetch('http://localhost:8080/market/customer/', {
             method: "get",
             headers: {
                  "Content-Type": "application/json; ; charset=utf-8",
@@ -27,7 +27,7 @@ class MasterBarang extends Component {
         })
         .then(response => response.json())
         .then(json => {
-            this.setState({ barang: json })
+            this.setState({ customer: json })
         })
         .catch((e) => {
             alert("Failed fetching data!!", e)
@@ -39,13 +39,13 @@ class MasterBarang extends Component {
         {
             alert("Nama tidak boleh kosong!");
         }
-        else if(this.state.harga === "") 
+        else if(this.state.alamat === "") 
         {
-            alert("Harga tidak boleh kosong!");
+            alert("Alamat tidak boleh kosong!");
         }
-        else if(this.state.jumlah === "") 
+        else if(this.state.telepon === "") 
         {
-            alert("Jumlah tidak boleh kosong!");
+            alert("Telepon tidak boleh kosong!");
             return false;
         }
         else 
@@ -53,13 +53,13 @@ class MasterBarang extends Component {
             const objek = {
                 id: this.state.id,
                 nama: this.state.nama,
-                harga: this.state.harga,
-                jumlah: this.state.jumlah
+                alamat: this.state.alamat,
+                telepon: this.state.telepon
             };
 
             if(this.valueSubmit === "Save") 
             {
-                fetch('http://localhost:8080/market/barang/', {
+                fetch('http://localhost:8080/market/customer/', {
                     method: "post",
                     headers: {
                         "Content-Type": "application/json; ; charset=utf-8",
@@ -70,7 +70,7 @@ class MasterBarang extends Component {
                 })
                 .then(response => response.json())
                 .then(() => {
-                    fetch('http://localhost:8080/market/barang/', {
+                    fetch('http://localhost:8080/market/customer/', {
                         method: "get",
                         headers: {
                             "Content-Type": "application/json; ; charset=utf-8",
@@ -80,7 +80,7 @@ class MasterBarang extends Component {
                     })
                     .then(response => response.json())
                     .then(json => {
-                        this.setState({ barang: json });
+                        this.setState({ customer: json });
                     })
                     .catch(() => {
                         alert("Failed fetching data!!");
@@ -92,9 +92,7 @@ class MasterBarang extends Component {
             }
             else if(this.valueSubmit === "Update")
             {
-                this.valueSubmit = "Save";
-
-                fetch('http://localhost:8080/market/barang/' + this.state.id, {
+                fetch('http://localhost:8080/market/customer/' + this.state.id, {
                     method: "put",
                     headers: {
                         "Content-Type": "application/json; ; charset=utf-8",
@@ -105,7 +103,7 @@ class MasterBarang extends Component {
                 })
                 .then(response => response.json())
                 .then(() => {
-                    fetch('http://localhost:8080/market/barang/', {
+                    fetch('http://localhost:8080/market/customer/', {
                         method: "get",
                         headers: {
                             "Content-Type": "application/json; ; charset=utf-8",
@@ -115,7 +113,7 @@ class MasterBarang extends Component {
                     })
                     .then(response => response.json())
                     .then(json => {
-                        this.setState({ barang: json });
+                        this.setState({ customer: json });
                     })
                     .catch(() => {
                         alert("Failed fetching data!!");
@@ -124,6 +122,8 @@ class MasterBarang extends Component {
                 .catch(() => {
                     alert("Failed sending data!!");
                 });
+
+                this.valueSubmit = "Save";
             }
         }
 
@@ -135,13 +135,13 @@ class MasterBarang extends Component {
         this.setState({
             id: objek.id,
             nama: objek.nama,
-            harga: objek.harga,
-            jumlah: objek.jumlah
+            alamat: objek.alamat,
+            telepon: objek.telepon
         });
     }
 
     onClickDelete = id => {
-        fetch('http://localhost:8080/market/barang/' + id, {
+        fetch('http://localhost:8080/market/customer/' + id, {
             method: "delete",
             headers: {
                 "Content-Type": "application/json; ; charset=utf-8",
@@ -150,7 +150,7 @@ class MasterBarang extends Component {
             }
         })
         .then(() => {
-            fetch('http://localhost:8080/market/barang/', {
+            fetch('http://localhost:8080/market/customer/', {
                 method: "get",
                 headers: {
                     "Content-Type": "application/json; ; charset=utf-8",
@@ -160,7 +160,7 @@ class MasterBarang extends Component {
             })
             .then(response => response.json())
             .then(json => {
-                this.setState({ barang: json });
+                this.setState({ customer: json });
             })
             .catch((e) => {
                 console.log(e);
@@ -176,8 +176,8 @@ class MasterBarang extends Component {
     onClickClear = () => {
         this.setState({ 
             nama: "",
-            harga: "",
-            jumlah: ""
+            alamat: "",
+            telepon: ""
          });
     }
 
@@ -196,7 +196,7 @@ class MasterBarang extends Component {
 
         if(nilai === "") 
         {
-            fetch('http://localhost:8080/market/barang/', {
+            fetch('http://localhost:8080/market/customer/', {
                 method: "get",
                 headers: {
                     "Content-Type": "application/json; ; charset=utf-8",
@@ -206,7 +206,7 @@ class MasterBarang extends Component {
             })
             .then(response => response.json())
             .then(json => {
-                this.setState({ barang: json });
+                this.setState({ customer: json });
             })
             .catch((e) => {
                 console.log(e);
@@ -215,7 +215,7 @@ class MasterBarang extends Component {
         }
         else if(this.valueSelect === "id")
         {
-            fetch('http://localhost:8080/market/barang/' + nilai, {
+            fetch('http://localhost:8080/market/customer/' + nilai, {
                 method: "get",
                 headers: {
                     "Content-Type": "application/json; ; charset=utf-8",
@@ -225,11 +225,11 @@ class MasterBarang extends Component {
             })
             .then(response => response.json())
             .then(json => {
-                let barang = [];
-                barang.push(json);
+                let customer = [];
+                customer.push(json);
 
                 this.setState({ 
-                    barang
+                    customer
                 });
             })
             .catch((e) => {
@@ -239,7 +239,7 @@ class MasterBarang extends Component {
         }
         else if(this.valueSelect === "nama")
         {
-            fetch('http://localhost:8080/market/barang/nama/' + nilai, {
+            fetch('http://localhost:8080/market/customer/nama/' + nilai, {
                 method: "get",
                 headers: {
                     "Content-Type": "application/json; ; charset=utf-8",
@@ -250,7 +250,7 @@ class MasterBarang extends Component {
             .then(response => response.json())
             .then(json => {
                 this.setState({ 
-                    barang: json 
+                    customer: json 
                 });
             })
             .catch((e) => {
@@ -261,7 +261,7 @@ class MasterBarang extends Component {
     }
 
     render() { 
-        const { nama, harga, jumlah } = this.state;
+        const { nama, alamat, telepon } = this.state;
 
         return ( 
             <React.Fragment>
@@ -270,13 +270,13 @@ class MasterBarang extends Component {
                         <Paragraph>Formulir Pengguna</Paragraph>
                     </Div>
                     <Div class="form">
-                        <Text name="barang-nama" id="barang-nama" class="input" placeholder="Nama" value={nama} onChange={el => this.onChangeText(el, "nama")} />
-                        <Text name="barang-harga" id="barang-harga" class="input" placeholder="Harga" value={harga} onChange={el => this.onChangeText(el, "harga")} />
-                        <Text name="barang-jumlah" id="barang-jumlah" class="input" placeholder="Jumlah" value={jumlah} onChange={el => this.onChangeText(el, "jumlah")} />
+                        <Text name="customer-nama" id="customer-nama" value={nama} class="input" placeholder="Nama" onChange={el => this.onChangeText(el, "nama")} />
+                        <Text name="customer-alamat" id="customer-alamat" value={alamat} class="input" placeholder="Alamat" onChange={el => this.onChangeText(el, "alamat")} />
+                        <Text name="customer-telepon" id="customer-telepon" value={telepon} class="input" placeholder="Telepon" onChange={el => this.onChangeText(el, "telepon")} />
                     </Div>
                     <Div class="tombol">
-                        <Button value="Clear Form" class="button-clear" id="barang-clear" name="barang-clear" onClick={this.onClickClear} />
-                        <Button value={this.valueSubmit} class="button-submit" id="barang-submit" name="barang-submit" onClick={this.onClickSubmit} />
+                        <Button value="Clear Form" class="button-clear" id="customer-clear" name="customer-clear" onClick={this.onClickClear} />
+                        <Button value={this.valueSubmit} class="button-submit" id="customer-submit" name="customer-submit" onClick={this.onClickSubmit} />
                     </Div>
                 </Div>
                 <Div class="table-data">
@@ -296,23 +296,23 @@ class MasterBarang extends Component {
                             <tr>
                                 <th>ID</th>
                                 <th>Nama</th>
-                                <th>Harga</th>
-                                <th>Jumlah</th>
+                                <th>Alamat</th>
+                                <th>Telepon</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
                             {
-                                this.state.barang.map((value, index) => {
+                                this.state.customer.map((value, index) => {
                                     return (
                                         <TableRow key={index}>
                                             <TableData>{value.id}</TableData>
                                             <TableData>{value.nama}</TableData>
-                                            <TableData>{value.harga}</TableData>
-                                            <TableData>{value.jumlah}</TableData>
+                                            <TableData>{value.alamat}</TableData>
+                                            <TableData>{value.telepon}</TableData>
                                             <TableData>
-                                                <Button value="Update" class="button-submit" id="barang-update" name="barang-update" onClick={() => this.onClickUpdate(value)} />
-                                                <Button value="Delete" class="button-submit" id="barang-delete" name="barang-delete" onClick={() => this.onClickDelete(value.id)} />
+                                                <Button value="Update" class="button-submit" id="customer-update" name="customer-update" onClick={() => this.onClickUpdate(value)} />
+                                                <Button value="Delete" class="button-submit" id="customer-delete" name="customer-delete" onClick={() => this.onClickDelete(value.id)} />
                                             </TableData>
                                         </TableRow>
                                     )
@@ -326,4 +326,4 @@ class MasterBarang extends Component {
     }
 }
  
-export default MasterBarang;
+export default Customer;

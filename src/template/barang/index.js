@@ -2,21 +2,22 @@ import React, { Component } from 'react';
 
 import { Text, Div, Paragraph, Table, TableRow, TableData, Button, Select, Option } from '../../component';
 
-class MasterKasir extends Component {
+class Barang extends Component {
     constructor(props) {
         super(props);
         this.state = { 
-            kasir: [],
+            barang: [],
             id: "",
             nama: "",
-            alamat: "",
-            telepon: ""
+            harga: "",
+            jumlah: ""
          }
-        this.valueSubmit = "Save";
+         this.valueSubmit = "Save";
+         this.valueSelect = "id";
     }
 
     componentDidMount() {
-        fetch('http://localhost:8080/market/kasir/', {
+        fetch('http://localhost:8080/market/barang/', {
             method: "get",
             headers: {
                  "Content-Type": "application/json; ; charset=utf-8",
@@ -26,7 +27,7 @@ class MasterKasir extends Component {
         })
         .then(response => response.json())
         .then(json => {
-            this.setState({ kasir: json })
+            this.setState({ barang: json })
         })
         .catch((e) => {
             alert("Failed fetching data!!", e)
@@ -38,13 +39,13 @@ class MasterKasir extends Component {
         {
             alert("Nama tidak boleh kosong!");
         }
-        else if(this.state.alamat === "") 
+        else if(this.state.harga === "") 
         {
-            alert("Alamat tidak boleh kosong!");
+            alert("Harga tidak boleh kosong!");
         }
-        else if(this.state.telepon === "") 
+        else if(this.state.jumlah === "") 
         {
-            alert("Telepon tidak boleh kosong!");
+            alert("Jumlah tidak boleh kosong!");
             return false;
         }
         else 
@@ -52,13 +53,13 @@ class MasterKasir extends Component {
             const objek = {
                 id: this.state.id,
                 nama: this.state.nama,
-                alamat: this.state.alamat,
-                telepon: this.state.telepon
+                harga: this.state.harga,
+                jumlah: this.state.jumlah
             };
 
             if(this.valueSubmit === "Save") 
             {
-                fetch('http://localhost:8080/market/kasir/', {
+                fetch('http://localhost:8080/market/barang/', {
                     method: "post",
                     headers: {
                         "Content-Type": "application/json; ; charset=utf-8",
@@ -69,7 +70,7 @@ class MasterKasir extends Component {
                 })
                 .then(response => response.json())
                 .then(() => {
-                    fetch('http://localhost:8080/market/kasir/', {
+                    fetch('http://localhost:8080/market/barang/', {
                         method: "get",
                         headers: {
                             "Content-Type": "application/json; ; charset=utf-8",
@@ -79,7 +80,7 @@ class MasterKasir extends Component {
                     })
                     .then(response => response.json())
                     .then(json => {
-                        this.setState({ kasir: json });
+                        this.setState({ barang: json });
                     })
                     .catch(() => {
                         alert("Failed fetching data!!");
@@ -91,7 +92,9 @@ class MasterKasir extends Component {
             }
             else if(this.valueSubmit === "Update")
             {
-                fetch('http://localhost:8080/market/kasir/' + this.state.id, {
+                this.valueSubmit = "Save";
+
+                fetch('http://localhost:8080/market/barang/' + this.state.id, {
                     method: "put",
                     headers: {
                         "Content-Type": "application/json; ; charset=utf-8",
@@ -102,7 +105,7 @@ class MasterKasir extends Component {
                 })
                 .then(response => response.json())
                 .then(() => {
-                    fetch('http://localhost:8080/market/kasir/', {
+                    fetch('http://localhost:8080/market/barang/', {
                         method: "get",
                         headers: {
                             "Content-Type": "application/json; ; charset=utf-8",
@@ -112,7 +115,7 @@ class MasterKasir extends Component {
                     })
                     .then(response => response.json())
                     .then(json => {
-                        this.setState({ kasir: json });
+                        this.setState({ barang: json });
                     })
                     .catch(() => {
                         alert("Failed fetching data!!");
@@ -121,8 +124,6 @@ class MasterKasir extends Component {
                 .catch(() => {
                     alert("Failed sending data!!");
                 });
-
-                this.valueSubmit = "Save";
             }
         }
 
@@ -134,49 +135,52 @@ class MasterKasir extends Component {
         this.setState({
             id: objek.id,
             nama: objek.nama,
-            alamat: objek.alamat,
-            telepon: objek.telepon
+            harga: objek.harga,
+            jumlah: objek.jumlah
         });
     }
 
     onClickDelete = id => {
-        fetch('http://localhost:8080/market/kasir/' + id, {
-            method: "delete",
-            headers: {
-                "Content-Type": "application/json; ; charset=utf-8",
-                "Access-Control-Allow-Headers": "Authorization, Content-Type",
-                "Access-Control-Allow-Origin": "*"
-            }
-        })
-        .then(() => {
-            fetch('http://localhost:8080/market/kasir/', {
-                method: "get",
+        if(window.confirm("Apakah anda ingin menghapus data tersebut?"))
+        {
+            fetch('http://localhost:8080/market/barang/' + id, {
+                method: "delete",
                 headers: {
                     "Content-Type": "application/json; ; charset=utf-8",
                     "Access-Control-Allow-Headers": "Authorization, Content-Type",
                     "Access-Control-Allow-Origin": "*"
                 }
             })
-            .then(response => response.json())
-            .then(json => {
-                this.setState({ kasir: json });
+            .then(() => {
+                fetch('http://localhost:8080/market/barang/', {
+                    method: "get",
+                    headers: {
+                        "Content-Type": "application/json; ; charset=utf-8",
+                        "Access-Control-Allow-Headers": "Authorization, Content-Type",
+                        "Access-Control-Allow-Origin": "*"
+                    }
+                })
+                .then(response => response.json())
+                .then(json => {
+                    this.setState({ barang: json });
+                })
+                .catch((e) => {
+                    console.log(e);
+                    alert("Failed fetching data!!");
+                });
             })
             .catch((e) => {
                 console.log(e);
-                alert("Failed fetching data!!");
+                alert("Failed sending data!!");
             });
-        })
-        .catch((e) => {
-            console.log(e);
-            alert("Failed sending data!!");
-        });
+        }
     }
 
     onClickClear = () => {
         this.setState({ 
             nama: "",
-            alamat: "",
-            telepon: ""
+            harga: "",
+            jumlah: ""
          });
     }
 
@@ -186,8 +190,81 @@ class MasterKasir extends Component {
         });
     }
 
+    onChangeSelect = el => {
+        this.valueSelect = el.target.value;
+    }
+
+    onChangeSearch = el => {
+        const nilai = el.target.value;
+
+        if(nilai === "") 
+        {
+            fetch('http://localhost:8080/market/barang/', {
+                method: "get",
+                headers: {
+                    "Content-Type": "application/json; ; charset=utf-8",
+                    "Access-Control-Allow-Headers": "Authorization, Content-Type",
+                    "Access-Control-Allow-Origin": "*"
+                }
+            })
+            .then(response => response.json())
+            .then(json => {
+                this.setState({ barang: json });
+            })
+            .catch((e) => {
+                console.log(e);
+                alert("Failed fetching data!!");
+            });
+        }
+        else if(this.valueSelect === "id")
+        {
+            fetch('http://localhost:8080/market/barang/' + nilai, {
+                method: "get",
+                headers: {
+                    "Content-Type": "application/json; ; charset=utf-8",
+                    "Access-Control-Allow-Headers": "Authorization, Content-Type",
+                    "Access-Control-Allow-Origin": "*"
+                }
+            })
+            .then(response => response.json())
+            .then(json => {
+                let barang = [];
+                barang.push(json);
+
+                this.setState({ 
+                    barang
+                });
+            })
+            .catch((e) => {
+                console.log(e);
+                alert("Failed fetching data!!");
+            });
+        }
+        else if(this.valueSelect === "nama")
+        {
+            fetch('http://localhost:8080/market/barang/nama/' + nilai, {
+                method: "get",
+                headers: {
+                    "Content-Type": "application/json; ; charset=utf-8",
+                    "Access-Control-Allow-Headers": "Authorization, Content-Type",
+                    "Access-Control-Allow-Origin": "*"
+                }
+            })
+            .then(response => response.json())
+            .then(json => {
+                this.setState({ 
+                    barang: json 
+                });
+            })
+            .catch((e) => {
+                console.log(e);
+                alert("Failed fetching data!!");
+            });
+        }
+    }
+
     render() { 
-        const { nama, alamat, telepon } = this.state;
+        const { nama, harga, jumlah } = this.state;
 
         return ( 
             <React.Fragment>
@@ -196,13 +273,13 @@ class MasterKasir extends Component {
                         <Paragraph>Formulir Pengguna</Paragraph>
                     </Div>
                     <Div class="form">
-                        <Text name="kasir-nama" id="kasir-nama" value={nama} class="input" placeholder="Nama" onChange={el => this.onChangeText(el, "nama")} />
-                        <Text name="kasir-alamat" id="kasir-alamat" value={alamat}  class="input" placeholder="Alamat" onChange={el => this.onChangeText(el, "alamat")} />
-                        <Text name="kasir-telepon" id="kasir-telepon" value={telepon}  class="input" placeholder="Telepon" onChange={el => this.onChangeText(el, "telepon")} />
+                        <Text name="barang-nama" id="barang-nama" class="input" placeholder="Nama" value={nama} onChange={el => this.onChangeText(el, "nama")} />
+                        <Text name="barang-harga" id="barang-harga" class="input" placeholder="Harga" value={harga} onChange={el => this.onChangeText(el, "harga")} />
+                        <Text name="barang-jumlah" id="barang-jumlah" class="input" placeholder="Jumlah" value={jumlah} onChange={el => this.onChangeText(el, "jumlah")} />
                     </Div>
                     <Div class="tombol">
-                        <Button value="Clear Form" class="button-clear" id="kasir-clear" name="kasir-clear" onClick={this.onClickClear} />
-                        <Button value={this.valueSubmit} class="button-submit" id="kasir-submit" name="kasir-submit" onClick={this.onClickSubmit} />
+                        <Button value="Clear Form" class="button-clear" id="barang-clear" name="barang-clear" onClick={this.onClickClear} />
+                        <Button value={this.valueSubmit} class="button-submit" id="barang-submit" name="barang-submit" onClick={this.onClickSubmit} />
                     </Div>
                 </Div>
                 <Div class="table-data">
@@ -222,23 +299,23 @@ class MasterKasir extends Component {
                             <tr>
                                 <th>ID</th>
                                 <th>Nama</th>
-                                <th>Alamat</th>
-                                <th>Telepon</th>
+                                <th>Harga</th>
+                                <th>Jumlah</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
                             {
-                                this.state.kasir.map((value, index) => {
+                                this.state.barang.map((value, index) => {
                                     return (
                                         <TableRow key={index}>
                                             <TableData>{value.id}</TableData>
                                             <TableData>{value.nama}</TableData>
-                                            <TableData>{value.alamat}</TableData>
-                                            <TableData>{value.telepon}</TableData>
+                                            <TableData>{value.harga}</TableData>
+                                            <TableData>{value.jumlah}</TableData>
                                             <TableData>
-                                                <Button value="Update" class="button-submit" id="kasir-update" name="kasir-update" onClick={() => this.onClickUpdate(value)} />
-                                                <Button value="Delete" class="button-submit" id="kasir-delete" name="kasir-delete" onClick={() => this.onClickDelete(value.id)} />
+                                                <Button value="Update" class="button-submit" id="barang-update" name="barang-update" onClick={() => this.onClickUpdate(value)} />
+                                                <Button value="Delete" class="button-submit" id="barang-delete" name="barang-delete" onClick={() => this.onClickDelete(value.id)} />
                                             </TableData>
                                         </TableRow>
                                     )
@@ -252,4 +329,4 @@ class MasterKasir extends Component {
     }
 }
  
-export default MasterKasir;
+export default Barang;
