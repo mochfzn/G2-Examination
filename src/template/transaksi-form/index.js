@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
+import { connect } from "react-redux"
 
 import { Div, Paragraph, Label, Select, Option, Text, Button } from '../../component';
+import { Helper } from '../index';
 import './style.css';
 
 class TransaksiForm extends Component {
@@ -248,84 +251,98 @@ class TransaksiForm extends Component {
     }
 
     render() { 
+        if(this.props.isLogin === false) {
+            return <Redirect to="/" />
+        }
+
         const { waktu, total } = this.state;
 
         return ( 
-            <Div class="transaksi">
-                <Div class="judul">
-                    <Paragraph>Formulir Pengguna</Paragraph>
-                </Div>
-                <Div class="field">
-                    <Label for="transaksi-customer">Customer</Label>
-                    <Select id="transaksi-customer" name="transaksi-customer" class="select" onChange={event => this.onChangeSelectCustomer(event.target.value)}>
-                        <Option value="">Pilih</Option>
-                        {
-                            this.state.customers.map((value, index) => {
-                                return(
-                                    <Option value={value.id} key={index}>{value.nama}</Option>
-                                )  
-                            })
-                        }
-                    </Select>
-                </Div>
-                <Div class="field">
-                    <Label for="transaksi-waktu">Date Time</Label>
-                    <Text name="transaksi-waktu" id="transaksi-waktu" class="input" disabled="disabled" value={waktu} onChange={event => this.onChangeInput("waktu", event.target.value)} />
-                </Div>
-                {
-                    this.state.items.map((value, index) => {
-                        let addButton;
-                        if(index === this.state.items.length - 1) {
-                            addButton = 
-                                <Div class="add">
-                                        <Button value="+" class="button-add" onClick={this.addChild} />
-                                </Div>;
-                        }
+            <React.Fragment>
+                <Helper />
+                <Div class="transaksi">
+                    <Div class="judul">
+                        <Paragraph>Formulir Pengguna</Paragraph>
+                    </Div>
+                    <Div class="field">
+                        <Label for="transaksi-customer">Customer</Label>
+                        <Select id="transaksi-customer" name="transaksi-customer" class="select" onChange={event => this.onChangeSelectCustomer(event.target.value)}>
+                            <Option value="">Pilih</Option>
+                            {
+                                this.state.customers.map((value, index) => {
+                                    return(
+                                        <Option value={value.id} key={index}>{value.nama}</Option>
+                                    )  
+                                })
+                            }
+                        </Select>
+                    </Div>
+                    <Div class="field">
+                        <Label for="transaksi-waktu">Date Time</Label>
+                        <Text name="transaksi-waktu" id="transaksi-waktu" class="input" disabled="disabled" value={waktu} onChange={event => this.onChangeInput("waktu", event.target.value)} />
+                    </Div>
+                    {
+                        this.state.items.map((value, index) => {
+                            let addButton;
+                            if(index === this.state.items.length - 1) {
+                                addButton = 
+                                    <Div class="add">
+                                            <Button value="+" class="button-add" onClick={this.addChild} />
+                                    </Div>;
+                            }
 
-                        return(
-                            <Div class="items" key={index}>
-                                <Div class="item">
-                                    <Label for="user-city">Item</Label>
-                                    <Select id="transaksi-barang" name="transaksi-barang" class="select" onChange={event => this.onChangeSelectBarang(event.target.value, index)}>
-                                        <Option value="">Pilih</Option>
-                                        {
-                                            this.state.goods.map((value, index) => {
-                                                return(
-                                                    <Option value={value.id} key={index}>{value.nama}</Option>
-                                                )
-                                            })
-                                        }
-                                    </Select>
+                            return(
+                                <Div class="items" key={index}>
+                                    <Div class="item">
+                                        <Label for="user-city">Item</Label>
+                                        <Select id="transaksi-barang" name="transaksi-barang" class="select" onChange={event => this.onChangeSelectBarang(event.target.value, index)}>
+                                            <Option value="">Pilih</Option>
+                                            {
+                                                this.state.goods.map((value, index) => {
+                                                    return(
+                                                        <Option value={value.id} key={index}>{value.nama}</Option>
+                                                    )
+                                                })
+                                            }
+                                        </Select>
+                                    </Div>
+                                    <Div class="amount">
+                                        <Label for={"transaksi-harga-" + index}>Amount</Label>
+                                        <Text name="transaksi-harga" id={"transaksi-harga-" + index} class="input" disabled="disabled" placeholder="Amount" value={(value.barang.harga === "") ? "" : "Rp. " + value.barang.harga + ",-"} onChange={event => this.onChangeInput("harga", event.target.value, index)} />
+                                    </Div>
+                                    <Div class="qty">
+                                        <Label for={"transaksi-jumlah-" + index}>Qty</Label>
+                                        <Text name="transaksi-jumlah" id={"transaksi-jumlah-" + index} class="input" placeholder="Qty" value={value.jumlah} onChange={event => this.onChangeInputQuantity(event.target.value, index)} />
+                                    </Div>
+                                    <Div class="sub-total">
+                                        <Label for={"transaksi-sub-total-" + index}>Sub Total</Label>
+                                        <Text name="transaksi-sub-total" id={"transaksi-sub-total-" + index} class="input" disabled="disabled" placeholder="Sub Total" value={value.subTotal} onChange={event => this.onChangeInput("subTotal", event.target.value, index)} />
+                                    </Div>
+                                    <Div class="remove">
+                                        <Button value="-" class="button-remove" onClick={() => this.removeChild(index)} />
+                                    </Div>
+                                    {addButton}
                                 </Div>
-                                <Div class="amount">
-                                    <Label for={"transaksi-harga-" + index}>Amount</Label>
-                                    <Text name="transaksi-harga" id={"transaksi-harga-" + index} class="input" disabled="disabled" placeholder="Amount" value={(value.barang.harga === "") ? "" : "Rp. " + value.barang.harga + ",-"} onChange={event => this.onChangeInput("harga", event.target.value, index)} />
-                                </Div>
-                                <Div class="qty">
-                                    <Label for={"transaksi-jumlah-" + index}>Qty</Label>
-                                    <Text name="transaksi-jumlah" id={"transaksi-jumlah-" + index} class="input" placeholder="Qty" value={value.jumlah} onChange={event => this.onChangeInputQuantity(event.target.value, index)} />
-                                </Div>
-                                <Div class="sub-total">
-                                    <Label for={"transaksi-sub-total-" + index}>Sub Total</Label>
-                                    <Text name="transaksi-sub-total" id={"transaksi-sub-total-" + index} class="input" disabled="disabled" placeholder="Sub Total" value={value.subTotal} onChange={event => this.onChangeInput("subTotal", event.target.value, index)} />
-                                </Div>
-                                <Div class="remove">
-                                    <Button value="-" class="button-remove" onClick={() => this.removeChild(index)} />
-                                </Div>
-                                {addButton}
-                            </Div>
-                        )
-                    })
-                }
-                
-                <Div class="total">
-                    <Label for="user-city">Total</Label>
-                    <Text name="transaksi-total" id="transaksi-total" class="input" disabled="disabled" value={total} onChange={event => this.onChangeInputTotal(event.target.value)} />
-                    <Button value="Simpan" class="button" name="transaksi-simpan" id="transaksi-simpan" onClick={this.onClickSave} />
+                            )
+                        })
+                    }
+                    
+                    <Div class="total">
+                        <Label for="user-city">Total</Label>
+                        <Text name="transaksi-total" id="transaksi-total" class="input" disabled="disabled" value={total} onChange={event => this.onChangeInputTotal(event.target.value)} />
+                        <Button value="Simpan" class="button" name="transaksi-simpan" id="transaksi-simpan" onClick={this.onClickSave} />
+                    </Div>
                 </Div>
-            </Div>
+            </React.Fragment>
          );
     }
 }
+
+const mapStateToProps = state => {
+    return {
+        isLogin: state.Auth.statusLogin,
+        akses: state.Auth.akses
+    }
+}
  
-export default TransaksiForm;
+export default connect(mapStateToProps)(TransaksiForm);

@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
+import { connect } from "react-redux"
 
 import { Text, Div, Paragraph, Table, TableRow, TableData, Button, Select, Option } from '../../component';
+import  { Helper } from '../index';
 
 class Customer extends Component {
     constructor(props) {
@@ -261,10 +264,15 @@ class Customer extends Component {
     }
 
     render() { 
+        if(this.props.isLogin === false) {
+            return <Redirect to="/" />
+        }
+        
         const { nama, alamat, telepon } = this.state;
 
         return ( 
             <React.Fragment>
+                <Helper />
                 <Div class="form-data">
                     <Div class="judul">
                         <Paragraph>Formulir Pengguna</Paragraph>
@@ -325,5 +333,12 @@ class Customer extends Component {
          );
     }
 }
+
+const mapStateToProps = state => {
+    return {
+        isLogin: state.Auth.statusLogin,
+        akses: state.Auth.akses
+    }
+}
  
-export default Customer;
+export default connect(mapStateToProps)(Customer);
