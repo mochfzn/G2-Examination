@@ -84,10 +84,17 @@ public class StockOpnameRepositoryImpl implements StockOpnameRepository {
 
     @Override
     public int insert(StockOpname stockOpname) {
-        return jdbcTemplate.update(
+        jdbcTemplate.update(
                 "INSERT INTO stock_opname(id, id_barang, alasan, waktu, jumlah) values(?, ?, ?, ?, ?)",
                 stockOpname.getId(), stockOpname.getBarang().getId(), stockOpname.getAlasan(), new java.sql.Date(stockOpname.getWaktu().getTime()), stockOpname.getJumlah()
         );
+
+        jdbcTemplate.update(
+                "UPDATE barang SET jumlah = ? WHERE id = ?",
+                stockOpname.getJumlah(), stockOpname.getBarang().getId()
+        );
+
+        return 1;
     }
 
     @Override
