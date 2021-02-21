@@ -1,0 +1,744 @@
+{
+	"info": {
+		"_postman_id": "b295700e-31d7-4d9c-81bf-7b278c0e286a",
+		"name": "Mini Market",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Barang",
+			"item": [
+				{
+					"name": "Get All Barang",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/market/barang/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"market",
+								"barang",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Barang By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/market/barang/01f8b587-ce1c-4fad-b7dd-cda6ef8764aa",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"market",
+								"barang",
+								"01f8b587-ce1c-4fad-b7dd-cda6ef8764aa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save Barang",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nama\": \"Minyak Sayur\",\r\n    \"harga\": 5000,\r\n    \"jumlah\": 50\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/market/barang/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"market",
+								"barang",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Barang By Name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/market/barang/nama/per",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"market",
+								"barang",
+								"nama",
+								"per"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteBarang",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/market/barang/c3e1f84c-48d4-4ca2-bcf4-dc5acdc58f87",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"market",
+								"barang",
+								"c3e1f84c-48d4-4ca2-bcf4-dc5acdc58f87"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Barang",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"88ee420e-acfb-4e4f-ba98-7c191aef55b3\",\r\n    \"nama\": \"Gula\",\r\n    \"harga\": 6500.0,\r\n    \"jumlah\": 170\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/market/barang/88ee420e-acfb-4e4f-ba98-7c191aef5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"market",
+								"barang",
+								"88ee420e-acfb-4e4f-ba98-7c191aef5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "Get All Customer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/market/customer/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"market",
+								"customer",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Customer By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/market/customer/bede92fc-7eb1-4233-b8e5-fc08433fa2c9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"market",
+								"customer",
+								"bede92fc-7eb1-4233-b8e5-fc08433fa2c9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save Customer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nama\": \"Aufa\",\r\n    \"alamat\": \"Bekasi\",\r\n    \"telepon\": \"081328364482\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/market/customer/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"market",
+								"customer",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Customer",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"bede92fc-7eb1-4233-b8e5-fc08433fa2c9\",\r\n    \"nama\": \"Agung\",\r\n    \"alamat\": \"Bogor\",\r\n    \"telepon\": \"089733435876\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/market/customer/bede92fc-7eb1-4233-b8e5-fc08433fa2c9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"market",
+								"customer",
+								"bede92fc-7eb1-4233-b8e5-fc08433fa2c9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Customer",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/market/customer/bede92fc-7eb1-4233-b8e5-fc08433fa2c9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"market",
+								"customer",
+								"bede92fc-7eb1-4233-b8e5-fc08433fa2c9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Customer By Name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/market/customer/nama/bima",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"market",
+								"customer",
+								"nama",
+								"bima"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Kasir",
+			"item": [
+				{
+					"name": "Get All Kasir",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/market/kasir/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"market",
+								"kasir",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Kasir By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/market/kasir/c3f489a7-b3a4-4684-9d89-a2090e61b831",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"market",
+								"kasir",
+								"c3f489a7-b3a4-4684-9d89-a2090e61b831"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save Kasir",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nama\": \"Dika\",\r\n    \"alamat\": \"Galur\",\r\n    \"telepon\": \"08612388477\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/market/kasir/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"market",
+								"kasir",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Kasir",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"1a2f5531-bb40-47bb-b069-4e92d19985b2\",\r\n    \"nama\": \"Candra\",\r\n    \"alamat\": \"Cikini\",\r\n    \"telepon\": \"0895331652433\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/market/kasir/1a2f5531-bb40-47bb-b069-4e92d19985b2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"market",
+								"kasir",
+								"1a2f5531-bb40-47bb-b069-4e92d19985b2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Kasir",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/market/kasir/c3f489a7-b3a4-4684-9d89-a2090e61b831",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"market",
+								"kasir",
+								"c3f489a7-b3a4-4684-9d89-a2090e61b831"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Kasir By Name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/market/kasir/nama/adam",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"market",
+								"kasir",
+								"nama",
+								"adam"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Stock Opname",
+			"item": [
+				{
+					"name": "Get All Stock Opname",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/market/stock-opname/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"market",
+								"stock-opname",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Stock Opname By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/market/stock-opname/a7aeb9c8-0ab4-4153-a052-8202c1af4311",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"market",
+								"stock-opname",
+								"a7aeb9c8-0ab4-4153-a052-8202c1af4311"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save Stock Opname",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"barang\": {\r\n        \"id\": \"4dd526bc-a886-45d4-b91b-db418848d454\",\r\n        \"nama\": \"Minyak Wangi\",\r\n        \"harga\": 86500.0,\r\n        \"jumlah\": 46\r\n    },\r\n    \"jumlah\": 0,\r\n    \"waktu\": \"2021-02-19T04:05:30\",\r\n    \"alasan\": \"Coba lagi\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/market/stock-opname/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"market",
+								"stock-opname",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Stock Opname",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"a7aeb9c8-0ab4-4153-a052-8202c1af4311\",\r\n    \"barang\": {\r\n        \"id\": \"4dd526bc-a886-45d4-b91b-db418848d454\",\r\n        \"nama\": \"Minyak Wangi\",\r\n        \"harga\": 86500.0,\r\n        \"jumlah\": 46\r\n    },\r\n    \"alasan\": \"Rusak\",\r\n    \"waktu\": \"2021-02-19T09:02:40\",\r\n    \"jumlah\": 30\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/market/stock-opname/a7aeb9c8-0ab4-4153-a052-8202c1af4311",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"market",
+								"stock-opname",
+								"a7aeb9c8-0ab4-4153-a052-8202c1af4311"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Stock Opname",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/market/stock-opname/a7aeb9c8-0ab4-4153-a052-8202c1af4311",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"market",
+								"stock-opname",
+								"a7aeb9c8-0ab4-4153-a052-8202c1af4311"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Transaksi",
+			"item": [
+				{
+					"name": "Get All Transaksi",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/market/transaksi/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"market",
+								"transaksi",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Transaksi By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "Save Transaksi",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"waktu\": \"2021-02-08\",\r\n    \"total\": 100000,\r\n    \"customer\": {\r\n        \"id\": \"227768cf-b576-49d0-b88a-36279c74762d\",\r\n        \"nama\": \"Dihan\",\r\n        \"alamat\": \"Bekasi\",\r\n        \"telepon\": \"08562374483\"\r\n    },\r\n    \"kasir\": {\r\n        \"id\": \"31c848dd-0bdf-47cf-a715-b32ee9d405db\",\r\n        \"nama\": \"Adam\",\r\n        \"alamat\": \"Walang\",\r\n        \"telepon\": \"087233511675\"\r\n    },\r\n    \"detail\":\r\n    [\r\n        {\r\n            \"barang\": {\r\n                \"id\": \"af778767-1c00-44fb-b640-b5ad6a3614ee\",\r\n                \"nama\": \"Minyak Sayur\",\r\n                \"harga\": 5000.0,\r\n                \"jumlah\": 50\r\n            },\r\n            \"jumlah\": 2\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/market/transaksi/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"market",
+								"transaksi",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Transaksi",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"id\": \"90e4446b-5714-460e-bbdb-47e136745c90\",\r\n        \"waktu\": \"2021-02-19\",\r\n        \"total\": 80000.0,\r\n        \"customer\": {\r\n            \"id\": \"094db25b-6bae-4b39-a4ca-2dc52532e3f4\",\r\n            \"nama\": \"Aufa\",\r\n            \"alamat\": \"Bekasi\",\r\n            \"telepon\": \"081328364482\"\r\n        },\r\n        \"kasir\": {\r\n            \"id\": \"31c848dd-0bdf-47cf-a715-b32ee9d405db\",\r\n            \"nama\": \"Adam\",\r\n            \"alamat\": \"Walang\",\r\n            \"telepon\": \"087233511675\"\r\n        },\r\n        \"detail\": \r\n        [\r\n            {\r\n                \"barang\":\r\n                {\r\n                    \"id\": \"cdac7f06-3913-4d3e-a201-b14500a0eccb\",\r\n                    \"nama\": \"Beras\",\r\n                    \"harga\": 40000.0,\r\n                    \"jumlah\": 100\r\n                },\r\n                \"jumlah\": 2\r\n            }\r\n        ]\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/market/transaksi/90e4446b-5714-460e-bbdb-47e136745c90",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"market",
+								"transaksi",
+								"90e4446b-5714-460e-bbdb-47e136745c90"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Transaksi",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/market/transaksi/55d2590d-e89c-4492-9899-25be50a9ad35",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"market",
+								"transaksi",
+								"55d2590d-e89c-4492-9899-25be50a9ad35"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pengguna",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "aji",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "semua",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/market/pengguna/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"market",
+								"pengguna",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
