@@ -13,21 +13,21 @@ class Transaksi extends Component {
     }
 
     componentDidMount() {
-        // fetch('http://localhost:8080/market/transaksi/', {
-        //     method: "get",
-        //     headers: {
-        //          "Content-Type": "application/json; ; charset=utf-8",
-        //          "Access-Control-Allow-Headers": "Authorization, Content-Type",
-        //          "Access-Control-Allow-Origin": "*"
-        //     }
-        // })
-        // .then(response => response.json())
-        // .then(json => {
-        //     this.setState({ transaksi: json })
-        // })
-        // .catch((e) => {
-        //     alert("Failed fetching data!!", e)
-        // });
+        fetch('http://localhost:8080/market/transaksi/', {
+            method: "get",
+            headers: {
+                 "Content-Type": "application/json; ; charset=utf-8",
+                 "Access-Control-Allow-Headers": "Authorization, Content-Type",
+                 "Access-Control-Allow-Origin": "*"
+            }
+        })
+        .then(response => response.json())
+        .then(json => {
+            this.setState({ transaksi: json })
+        })
+        .catch((e) => {
+            alert("Failed fetching data!!", e)
+        });
     }
 
     render() { 
@@ -47,7 +47,7 @@ class Transaksi extends Component {
                         <tr>
                             <th>ID</th>
                             <th>Waktu</th>
-                            <th>Customer No</th>
+                            <th>Customer</th>
                             <th>Total Transaksi</th>
                             <th>Aksi</th>
                         </tr>
@@ -57,11 +57,9 @@ class Transaksi extends Component {
                             this.state.transaksi.map((value, index) => {
                                 return (
                                     <TableRow key={index}>
-                                        <TableData>
-                                            <NavLink to={"/transaksi/form/" + value.id} className="link">{value.id}</NavLink>
-                                        </TableData>
+                                        <TableData>{value.id}</TableData>
                                         <TableData>{value.waktu}</TableData>
-                                        <TableData>{value.customer.id}</TableData>
+                                        <TableData>{value.customer.nama}</TableData>
                                         <TableData>{value.total}</TableData>
                                         <TableData>
                                             <Button value="Update" class="button-submit" id="barang-update" name="barang-update" />

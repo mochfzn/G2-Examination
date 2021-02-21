@@ -23,10 +23,16 @@ class TransaksiForm extends Component {
                 }
             ],
             customer: {  },
+            kasir: {
+                id: "eb3f1bfb-b701-4562-bddf-35ed3ac901bf",
+                nama: "Wibowo",
+                alamat: "Kebon Kosong",
+                telepon: "0895331652433"
+            },
             waktu: "",
             total: ""
          }
-         this.today = new Date();
+         this.today = "";
     }
 
     componentDidMount() {
@@ -170,6 +176,7 @@ class TransaksiForm extends Component {
     }
 
     setWaktu = () => {
+        this.today = new Date();
         const tahun = this.today.getFullYear();
         const bulan = this.today.getMonth();
         const tanggal = this.today.getDate();
@@ -208,6 +215,35 @@ class TransaksiForm extends Component {
 
         this.setState({
             items: newItems
+        });
+    }
+
+    onClickSave = () => {
+        const objek = {
+            waktu: this.today.toJSON(),
+            total: this.state.total,
+            customer: this.state.customer,
+            kasir: this.state.kasir,
+            detail: this.state.items.map(value => {
+                return {barang: value.barang, jumlah: value.jumlah};
+            })
+        };
+
+        fetch('http://localhost:8080/market/transaksi/', {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json; ; charset=utf-8",
+                "Access-Control-Allow-Headers": "Authorization, Content-Type",
+                "Access-Control-Allow-Origin": "*"
+            },
+            body: JSON.stringify(objek)
+        })
+        .then(response => response.json())
+        .then(() => {
+            this.props.history.push("/transaksi");
+        })
+        .catch(() => {
+            alert("Failed sending data!!");
         });
     }
 
@@ -285,7 +321,7 @@ class TransaksiForm extends Component {
                 <Div class="total">
                     <Label for="user-city">Total</Label>
                     <Text name="transaksi-total" id="transaksi-total" class="input" disabled="disabled" value={total} onChange={event => this.onChangeInputTotal(event.target.value)} />
-                    <Button value="Simpan" class="button" />
+                    <Button value="Simpan" class="button" name="transaksi-simpan" id="transaksi-simpan" onClick={this.onClickSave} />
                 </Div>
             </Div>
          );
