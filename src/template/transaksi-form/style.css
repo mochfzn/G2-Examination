@@ -1,0 +1,184 @@
+.transaksi {
+    width: 960px;
+    height: 460px;
+    background-color: white;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.2), 0 0 16px rgba(169, 169, 169, 0.2);
+    border-radius: 20px;
+    margin: 20px auto;
+    padding: 20px;
+    overflow: auto;
+}
+
+.transaksi .judul {
+    width: 880px;
+    height: 55px;
+    margin: 0 auto;
+    text-align: center;
+    line-height: 55px;
+}
+
+.transaksi .field {
+    width: 430px;
+    height: 35px;
+    padding: 15px;
+    float: left;
+    line-height: 35px;
+}
+
+.transaksi .field label {
+    margin-left: 25px;
+}
+
+.transaksi .field .select {
+    margin-left: 30px;
+    width: 250px;
+    height: 30px;
+    border: 1px solid steelblue;
+    border-radius: 6px;
+    color: steelblue;
+}
+
+.transaksi .field .input {
+    margin-left: 30px;
+    width: 200px;
+    height: 25px;
+    border: 1px solid steelblue;
+    border-radius: 6px;
+    color: steelblue;
+}
+
+.transaksi .items {
+    width: 880px;
+    height: 60px;
+    padding: 5px 40px;
+    clear: left;
+}
+
+.transaksi .items .item {
+    width: 240px;
+    height: 60px;
+    float: left;
+}
+
+.transaksi .items .item .select {
+    width: 230px;
+    height: 25px;
+    border: 1px solid steelblue;
+    border-radius: 6px;
+    color: steelblue;
+    margin-top: 10px;
+}
+
+.transaksi .items .amount {
+    width: 110px;
+    height: 60px;
+    float: left;
+}
+
+.transaksi .items .amount .input {
+    width: 100px;
+    height: 25px;
+    border: 1px solid steelblue;
+    border-radius: 6px;
+    color: steelblue;
+    padding: 0px;
+    margin-top: 10px;
+}
+
+.transaksi .items .qty {
+    width: 100px;
+    height: 60px;
+    float: left;
+}
+
+.transaksi .items .qty .input {
+    width: 90px;
+    height: 25px;
+    border: 1px solid steelblue;
+    border-radius: 6px;
+    color: steelblue;
+    padding: 0px;
+    margin-top: 10px;
+}
+
+.transaksi .items .sub-total {
+    width: 200px;
+    height: 60px;
+    float: left;
+}
+
+.transaksi .items .sub-total .input {
+    width: 190px;
+    height: 25px;
+    border: 1px solid steelblue;
+    border-radius: 6px;
+    color: steelblue;
+    padding: 0px;
+    margin-top: 10px;
+}
+
+.transaksi .items .remove {
+    width: 50px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    float: left;
+}
+
+.transaksi .items .remove .button-remove {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid lightsalmon;
+    background-color: lightsalmon;
+    color: whitesmoke;
+    line-height: 10px;
+}
+
+.transaksi .items .add {
+    width: 50px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    float: left;
+}
+
+.transaksi .items .add .button-add {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid deepskyblue;
+    background-color: deepskyblue;
+    color: whitesmoke;
+}
+
+.transaksi .total {
+    width: 360px;
+    height: 35px;
+    padding: 15px;
+    float: right;
+    margin-top: 65px;
+}
+
+.transaksi .total .input {
+    margin-left: 30px;
+    margin-right: 20px;
+    width: 180px;
+    height: 25px;
+    border: 1px solid steelblue;
+    border-radius: 6px;
+    color: steelblue;
+}
+
+.transaksi .total .button {
+    width: 81px;
+    height: 30px;
+    border: 1px solid steelblue;
+    background-color: steelblue;
+    color: white;
+    border-radius: 5px;
+}
+
+.transaksi .items label {
+    display: block;
+}

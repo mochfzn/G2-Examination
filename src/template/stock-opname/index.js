@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import { Text, Div, TableRow, TableData, Button } from '../../component';
 import { NavLink } from 'react-router-dom';
+
+import { Text, Div, TableRow, TableData, Button } from '../../component';
 
 class StockOpname extends Component {
     constructor(props) {
         super(props);
         this.state = { 
             barang: [],
+            cari: ""
          }
     }
 
@@ -28,6 +30,61 @@ class StockOpname extends Component {
         });
     }
 
+    onChangeCari = nilai => {
+        this.setState({
+            cari: nilai
+        });
+    }
+
+    onClickSearch = () => {
+        if(this.state.cari === "")
+        {
+            fetch('http://localhost:8080/market/barang/', {
+                method: "get",
+                headers: {
+                    "Content-Type": "application/json; ; charset=utf-8",
+                    "Access-Control-Allow-Headers": "Authorization, Content-Type",
+                    "Access-Control-Allow-Origin": "*"
+                }
+            })
+            .then(response => response.json())
+            .then(json => {
+                this.setState({ 
+                    barang: json
+                });
+            })
+            .catch((e) => {
+                console.log(e);
+                alert("Failed fetching data!!");
+            });
+        }
+        else 
+        {
+            fetch('http://localhost:8080/market/barang/' + this.state.cari, {
+                method: "get",
+                headers: {
+                    "Content-Type": "application/json; ; charset=utf-8",
+                    "Access-Control-Allow-Headers": "Authorization, Content-Type",
+                    "Access-Control-Allow-Origin": "*"
+                }
+            })
+            .then(response => response.json())
+            .then(json => {
+                let barang = [];
+                barang.push(json);
+    
+                this.setState({ 
+                    barang
+                });
+            })
+            .catch((e) => {
+                console.log(e);
+                alert("Failed fetching data!!");
+            });
+        }
+        
+    }
+
     render() { 
         return ( 
             <Div class="table-data">
@@ -35,9 +92,9 @@ class StockOpname extends Component {
                     <p>Data Pengguna</p>
                 </Div>
                 <Div class="cari">
-                    <label className="judul">Cari: </label>
-                    <Text name="cari" id="cari" class="input" placeholder="Cari..." />
-                    <Button value="Cari" class="button-search" />
+                    <label className="judul">Cari berdasarkan ID: </label>
+                    <Text name="cari" id="cari" class="input" placeholder="Cari..." value={this.state.cari} onChange={event => this.onChangeCari(event.target.value)}  />
+                    <Button value="Cari" class="button-search" id="cari" name="cari" onClick={this.onClickSearch} />
                     <NavLink to="/stock-opname/form" className="link">Tambah</NavLink>
                 </Div>
                 <table className="table">

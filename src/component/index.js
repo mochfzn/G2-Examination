@@ -6,6 +6,7 @@ import TableRow from "./table-row";
 import TableData from "./table-data";
 import Paragraph from "./paragraph";
 import Option from "./option";
-import Select from "./select"
+import Select from "./select";
+import Label from "./label";
 
-export {Button, Div, Text, Table, TableRow, TableData, Paragraph, Select, Option};
+export {Button, Div, Text, Table, TableRow, TableData, Paragraph, Select, Option, Label};

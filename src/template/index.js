@@ -8,5 +8,6 @@ import Kasir from "./kasir";
 import StockOpname from "./stock-opname";
 import StockOpnameForm from "./stock-opname-form";
 import Transaksi from "./transaksi";
+import TransaksiForm from "./transaksi-form";
 
-export { Admin, Body, Pegawai, Login, Barang, Customer, Kasir, StockOpname, StockOpnameForm, Transaksi }
+export { Admin, Body, Pegawai, Login, Barang, Customer, Kasir, StockOpname, StockOpnameForm, Transaksi, TransaksiForm }

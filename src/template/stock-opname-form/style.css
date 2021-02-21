@@ -47,6 +47,15 @@
     margin-left: 40px;
 }
 
+.stock-opname .form .row .select {
+    width: 200px;
+    height: 35px;
+    border: 1px solid steelblue;
+    border-radius: 6px;
+    padding-left: 10px;
+    margin-left: 15px;
+}
+
 .stock-opname .form .big-row {
     width: 800px;
     height: 130px;
