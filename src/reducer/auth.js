@@ -1,6 +1,7 @@
 const defaultState = {
     statusLogin: false,
-    akses: ""
+    akses: "",
+    kasir: { }
 }
 
 const authReducer = (state = defaultState, action) => {
@@ -8,12 +9,14 @@ const authReducer = (state = defaultState, action) => {
         case "login-berhasil":
             return {
                 statusLogin: true,
-                akses: action.akses
+                akses: action.akses,
+                kasir: action.kasir
             }
         case "logout-berhasil":
             return {
                 statusLogin: false,
-                akses: ""
+                akses: "",
+                kasir: { }
             }
         default:
             return state;

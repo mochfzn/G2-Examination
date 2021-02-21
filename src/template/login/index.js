@@ -10,24 +10,45 @@ class Login extends Component {
     constructor(props) {
         super(props);
         this.state = { 
+            pengguna: { },
             username: "",
             password: "",
          }
     }
 
     doLogin = () => {
-        if((this.state.username === "admin") && (this.state.password === "Admin"))
-        {
-            this.props.changeLogin("admin");
-        }
-        else if((this.state.username === "kasir") && (this.state.password === "Kasir"))
-        {
-            this.props.changeLogin("kasir");
-        }
-        else
-        {
-            alert("Username atau password salah!");
-        }
+        fetch(`http://localhost:8080/market/pengguna/?username=${encodeURIComponent(this.state.username)}&password=${encodeURIComponent(this.state.password)}`, {
+            method: "get",
+            headers: {
+                "Content-Type": "application/json; ; charset=utf-8",
+                "Access-Control-Allow-Headers": "Authorization, Content-Type",
+                "Access-Control-Allow-Origin": "*"
+            }
+        })
+        .then(response => response.json())
+        .then(json => {
+            this.setState({ 
+                pengguna: json
+            });
+
+            if(typeof json.errorMessage !== 'undefined')
+            {
+                alert(json.errorMessage);
+            }
+
+            if(this.state.pengguna.akses === "admin")
+            {
+                this.props.changeLogin("admin", this.state.pengguna.kasir);
+            }
+            else if(this.state.pengguna.akses === "kasir")
+            {
+                this.props.changeLogin("kasir", this.state.pengguna.kasir);
+            }
+        })
+        .catch((e) => {
+            console.log(e);
+            alert("Failed fetching data!!");
+        });
     }
 
     onChangeInput = (attribut, value) => {
@@ -76,7 +97,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    changeLogin: akses => dispatch({ type: "login-berhasil", akses: akses })
+    changeLogin: (akses, kasir) => dispatch({ type: "login-berhasil", akses: akses, kasir: kasir })
 });
  
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

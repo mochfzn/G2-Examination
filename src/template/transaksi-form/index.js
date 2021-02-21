@@ -27,15 +27,16 @@ class TransaksiForm extends Component {
             ],
             customer: {  },
             kasir: {
-                id: "eb3f1bfb-b701-4562-bddf-35ed3ac901bf",
-                nama: "Wibowo",
-                alamat: "Kebon Kosong",
-                telepon: "0895331652433"
+                id: "",
+                nama: "",
+                alamat: "",
+                telepon: ""
             },
             waktu: "",
             total: ""
          }
          this.today = "";
+         this.isFinished = false;
     }
 
     componentDidMount() {
@@ -74,6 +75,10 @@ class TransaksiForm extends Component {
         })
         .catch((e) => {
             alert("Failed fetching data!!", e)
+        });
+
+        this.setState({
+            kasir: this.props.kasir
         });
 
         this.setWaktu();
@@ -222,37 +227,58 @@ class TransaksiForm extends Component {
     }
 
     onClickSave = () => {
-        const objek = {
-            waktu: this.today.toJSON(),
-            total: this.state.total,
-            customer: this.state.customer,
-            kasir: this.state.kasir,
-            detail: this.state.items.map(value => {
-                return {barang: value.barang, jumlah: value.jumlah};
+        if(this.validasiTransaksi())
+        {
+            const objek = {
+                waktu: this.today.toJSON(),
+                total: this.state.total,
+                customer: this.state.customer,
+                kasir: this.state.kasir,
+                detail: this.state.items.map(value => {
+                    return {barang: value.barang, jumlah: value.jumlah};
+                })
+            };
+    
+            fetch('http://localhost:8080/market/transaksi/', {
+                method: "post",
+                headers: {
+                    "Content-Type": "application/json; ; charset=utf-8",
+                    "Access-Control-Allow-Headers": "Authorization, Content-Type",
+                    "Access-Control-Allow-Origin": "*"
+                },
+                body: JSON.stringify(objek)
             })
-        };
+            .then(response => response.json())
+            .then(() => {
+                this.isFinished = true;
+            })
+            .catch(() => {
+                alert("Failed sending data!!");
+            });
+        }
+    }
 
-        fetch('http://localhost:8080/market/transaksi/', {
-            method: "post",
-            headers: {
-                "Content-Type": "application/json; ; charset=utf-8",
-                "Access-Control-Allow-Headers": "Authorization, Content-Type",
-                "Access-Control-Allow-Origin": "*"
-            },
-            body: JSON.stringify(objek)
-        })
-        .then(response => response.json())
-        .then(() => {
-            this.props.history.push("/transaksi");
-        })
-        .catch(() => {
-            alert("Failed sending data!!");
+    validasiTransaksi = () => {
+        let hasil = true;
+
+        this.state.items.forEach(value => {
+            if(value.jumlah > value.barang.jumlah) {
+                alert("Jumlah pembelian " + value.barang.nama + " melebihi stock yang tersedia!")
+                hasil = false;
+                return false;
+            }
         });
+
+        return hasil;
     }
 
     render() { 
         if(this.props.isLogin === false) {
             return <Redirect to="/" />
+        }
+
+        if(this.isFinished === true) {
+            return <Redirect to="/transaksi" />
         }
 
         const { waktu, total } = this.state;
@@ -341,7 +367,8 @@ class TransaksiForm extends Component {
 const mapStateToProps = state => {
     return {
         isLogin: state.Auth.statusLogin,
-        akses: state.Auth.akses
+        akses: state.Auth.akses,
+        kasir: state.Auth.kasir
     }
 }
  
