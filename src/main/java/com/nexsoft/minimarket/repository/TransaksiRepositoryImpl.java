@@ -168,6 +168,13 @@ public class TransaksiRepositoryImpl implements TransaksiRepository {
             detail.setId(detailId.toString());
             jdbcTemplate.update("INSERT INTO transaksi_detail(id, id_transaksi, id_barang, jumlah) VALUES(?, ?, ?, ?)",
                     detail.getId(), transaksi.getId(), detail.getBarang().getId(), detail.getJumlah());
+
+            int jumlahSebelum = detail.getBarang().getJumlah();
+            int jumlahDiBeli = detail.getJumlah();
+            int selisih = jumlahSebelum - jumlahDiBeli;
+
+            jdbcTemplate.update("UPDATE barang SET jumlah = ? WHERE id = ?",
+                    selisih, detail.getBarang().getId());
         }
 
         return 1;
