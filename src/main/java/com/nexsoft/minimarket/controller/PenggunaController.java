@@ -19,9 +19,13 @@ public class PenggunaController {
     @Autowired
     PenggunaService penggunaService;
 
-    @PostMapping("/pengguna/")
-    public ResponseEntity<?> login(@RequestBody String username, @RequestBody String password) {
+    @GetMapping("/pengguna/")
+    public ResponseEntity<?> login(@RequestParam String username, @RequestParam String password) {
         logger.info("Comparing data!");
+
+        System.out.println("Username ==>" + username);
+        System.out.println("Password ==>" + password);
+
         Pengguna pengguna = penggunaService.login(username, password);
 
         if(pengguna == null) {

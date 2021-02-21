@@ -46,6 +46,8 @@ public class PenggunaRepositoryImpl implements PenggunaRepository {
                     ).get(0)
             );
 
+            System.out.println("Pemeriksaan ====>" + pengguna);
+
             return pengguna;
         } catch(IndexOutOfBoundsException e) {
             return null;
