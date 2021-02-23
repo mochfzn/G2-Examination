@@ -202,7 +202,7 @@ class StockOpnameForm extends Component {
                                     {
                                         this.state.barang.map((value, index) => {
                                             return (
-                                                <Option key={index} value={value.id}>{value.id}</Option>
+                                                <Option key={index} value={value.id}>{value.nama}</Option>
                                             )
                                         })
                                     }
